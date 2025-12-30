@@ -1,22 +1,97 @@
-# DAW_daily_temperatur_and_pedestrians
-How?
+````md
+# Basel Velo/Fuss Counts + MeteoSwiss Weather (Data Wrangling)
 
-Links:
-- First dataset (Velo/Fussgänger):
-    
-    - Source: Kanton Basel-Stadt Verkehrszähldaten Velos und Fussgänger - Basel --> https://data.bs.ch/explore/dataset/100013/?utm_source=chatgpt.com
-    
-    - Description: Basel-Stadt open dataset providing bicycle and pedestrian counts from automatic counting stations across the city, with hourly timestamps, location coordinates, and traffic counts. The Kanton Basel Stadt did as part of Open Government Data (OGD) make public sector data freely available for use in the public interest, to the extent permitted by law. This includes this Dataset
+Reproducible data wrangling project that merges Basel-Stadt bicycle/pedestrian counting station data (Velo/Fuss) with MeteoSwiss weather data (station BAS: Basel/Binningen). The pipeline produces a clean daily dataset (`data/merged_dataset.csv`) and an exploratory analysis notebook.
 
-</br>
-    
-- Second dataset (MeteoSwiss) --> https://data.geo.admin.ch/ch.meteoschweiz.ogd-smn/bas/ogd-smn_bas_h_historical_2020-2029.csv
-  
-    - Source: Meteo Swiss - Basel / Binningen Station (BAS) 
+## Repository contents
 
-    - Description: MeteoSwiss daily station data from Basel-Binningen (station BAS), including mean temperature, precipitation, and other meteorological variables. MeteoSwiss made it's data available as part of the  Open Government Data (OGD), including Ground measurement data, Climate data: Homogenized measurement series, Forecast data: Numerical weather prediction models (e.g., ICON-CH1/2-EPS). MeteoSwiss provides weather and climate services on behalf of the Swiss Confederation. Under the Federal Act on the Use of Electronic Means for the Performance of Official Duties.
-    
-Early on there was a problem with the encoding of the Data from Meteo Swiss, the dimension of the observations were only named in abbreviation. There was however another Dataset from Meteo swiss that mapped this abbreviations to their full name.
+- `01_build_merged_dataset.ipynb`: load → clean → daily aggregation → merge → QA → write output
+- `02_analysis_plots.ipynb`: exploratory analysis and plots
+- `data/merged_dataset.csv`: final merged daily dataset
+- `requirements.txt`: Python dependencies
+
+## Data sources
+
+- Basel-Stadt Velo/Fuss counts: https://data.bs.ch/explore/dataset/100013/
+- Meteo-Swiss data: https://www.meteoswiss.admin.ch/services-and-publications/applications/ext/download-data-without-coding-skills.html#lang=en&mdt=normal&pgid=&sid=BAS&col=ch.meteoschweiz.ogd-smn&di=hourly&tr=historical&hdr=2020-2029
+    - MeteoSwiss BAS hourly data: https://data.geo.admin.ch/ch.meteoschweiz.ogd-smn/bas/ogd-smn_bas_h_historical_2020-2029.csv
+    - MeteoSwiss parameter metadata: https://data.geo.admin.ch/ch.meteoschweiz.ogd-smn/ogd-smn_meta_parameters.csv
+
+Notes:
+- MeteoSwiss CSV uses `;` as separator and is read with `latin1` encoding.
+
+## Git LFS (required)
+
+This repository uses **Git LFS** to store large CSV files under `data/`. Without Git LFS you will download pointer files and the notebooks will fail.
+
+```bash
+git lfs install
+git clone https://github.com/Markusspb/DAW_daily_temperatur_and_pedestrians.git
+cd DAW_daily_temperatur_and_pedestrians
+git lfs pull
+````
+
+## Reproducibility (clean environment)
+
+Requirement: **Python >= 3.10 and < 3.13**
+Run commands from the repository root (notebooks use relative `data/...` paths).
+
+```bash
+python -m venv .venv
+```
+
+Activate:
+
+* Windows (PowerShell):
+
+```bash
+.venv\Scripts\Activate.ps1
+```
+
+* macOS / Linux:
+
+```bash
+source .venv/bin/activate
+```
+
+Install dependencies:
+
+```bash
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+Run notebooks in order:
+
+```bash
+jupyter lab
+```
+
+1. `01_build_merged_dataset.ipynb` (writes `data/merged_dataset.csv`)
+2. `02_analysis_plots.ipynb` (plots + summaries)
+
+## Output dataset
+
+`data/merged_dataset.csv` columns:
+
+* `SiteCode`, `SiteName`, `date`, `daily_total`
+* `temp_mean_C`, `precip_mm`, `wind_mean_ms`
+* `weekday`, `is_weekend`
+
+## Data quality note (stable panel)
+
+Some stations have partial coverage within the year. Aggregated analyses in Notebook 02 use a stable subset of stations with full daily coverage to avoid panel bias in time-series totals.
+
+## Submission note (ZIP)
+
+Do not rely on GitHub “Download ZIP” for LFS data. Before creating a ZIP locally, run:
+
+```bash
+git lfs pull
+```
 
 
-Start Jupyter from the repository root directory.
+## Authors
+
+* Pablo Munoz Ceroni
+* Markus Barten
