@@ -29,7 +29,7 @@ git lfs install
 git clone https://github.com/Markusspb/DAW_daily_temperatur_and_pedestrians.git
 cd DAW_daily_temperatur_and_pedestrians
 git lfs pull
-````
+```
 
 ## Reproducibility (clean environment)
 
