@@ -3,15 +3,16 @@
 Reproducible data wrangling project that merges Basel-Stadt bicycle/pedestrian counting station data (Velo/Fuss) with MeteoSwiss weather data (station BAS: Basel/Binningen). The pipeline produces a clean daily dataset (`data/merged_dataset.csv`) and an exploratory analysis notebook.
 
 ## Repository contents
-- `01_build_merged_dataset.ipynb`: load → clean → daily aggregation → merge → Quality Assurance → write output
+- `01_build_merged_dataset.ipynb`: load → clean → daily aggregation → merge → quality assurance → write output
 - `02_analysis_plots.ipynb`: exploratory analysis and plots
 - `data/merged_dataset.csv`: final merged daily dataset
 - `requirements.txt`: Python dependencies
 
 ## Data sources
 - Basel-Stadt Velo/Fuss counts: https://data.bs.ch/explore/dataset/100013/
-- MeteoSwiss BAS hourly data: https://data.geo.admin.ch/ch.meteoschweiz.ogd-smn/bas/ogd-smn_bas_h_historical_2020-2029.csv
-- MeteoSwiss parameter metadata: https://data.geo.admin.ch/ch.meteoschweiz.ogd-smn/ogd-smn_meta_parameters.csv
+- Meteo Swiss Data: https://www.meteoswiss.admin.ch/services-and-publications/applications/ext/download-data-without-coding-skills.html#lang=en&mdt=normal&pgid=&sid=BAS&col=ch.meteoschweiz.ogd-smn&di=hourly&tr=historical&hdr=2020-2029
+    - MeteoSwiss BAS hourly data: https://data.geo.admin.ch/ch.meteoschweiz.ogd-smn/bas/ogd-smn_bas_h_historical_2020-2029.csv
+    - MeteoSwiss parameter metadata: https://data.geo.admin.ch/ch.meteoschweiz.ogd-smn/ogd-smn_meta_parameters.csv
 
 Notes:
 - MeteoSwiss CSV uses `;` as separator and is read with `latin1` encoding.
