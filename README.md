@@ -14,8 +14,8 @@ Reproducible data wrangling project that merges Basel-Stadt bicycle/pedestrian c
 
 - Basel-Stadt Velo/Fuss counts: https://data.bs.ch/explore/dataset/100013/
 - Meteo-Swiss data: https://www.meteoswiss.admin.ch/services-and-publications/applications/ext/download-data-without-coding-skills.html#lang=en&mdt=normal&pgid=&sid=BAS&col=ch.meteoschweiz.ogd-smn&di=hourly&tr=historical&hdr=2020-2029
-    - MeteoSwiss BAS hourly data: https://data.geo.admin.ch/ch.meteoschweiz.ogd-smn/bas/ogd-smn_bas_h_historical_2020-2029.csv
-    - MeteoSwiss parameter metadata: https://data.geo.admin.ch/ch.meteoschweiz.ogd-smn/ogd-smn_meta_parameters.csv
+  - MeteoSwiss BAS hourly data: https://data.geo.admin.ch/ch.meteoschweiz.ogd-smn/bas/ogd-smn_bas_h_historical_2020-2029.csv
+  - MeteoSwiss parameter metadata: https://data.geo.admin.ch/ch.meteoschweiz.ogd-smn/ogd-smn_meta_parameters.csv
 
 Notes:
 - MeteoSwiss CSV uses `;` as separator and is read with `latin1` encoding.
@@ -29,7 +29,6 @@ git lfs install
 git clone https://github.com/Markusspb/DAW_daily_temperatur_and_pedestrians.git
 cd DAW_daily_temperatur_and_pedestrians
 git lfs pull
-```
 ````
 
 ## Reproducibility (clean environment)
