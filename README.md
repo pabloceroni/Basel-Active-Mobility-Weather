@@ -22,7 +22,8 @@ This repository uses **Git LFS** to store large CSV files under `data/`. Without
 
 ```bash
 git lfs install
-git clone https://github.com/Markusspb/DAW_daily_temperatur_and_pedestrians.git
+git clone git clone https://github.com/pabloceroni/Basel-Active-Mobility-Weather.git
+cd Basel-Active-Mobility-Weather
 cd DAW_daily_temperatur_and_pedestrians
 git lfs pull
 ```
