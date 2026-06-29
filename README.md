@@ -2,6 +2,12 @@
 
 Reproducible data wrangling project that merges Basel-Stadt bicycle/pedestrian counting station data (Velo/Fuss) with MeteoSwiss weather data (station BAS: Basel/Binningen). The pipeline produces a clean daily dataset (`data/merged_dataset.csv`) and an exploratory analysis notebook.
 
+## Portfolio note
+
+This repository is maintained as part of my data science portfolio. The project was developed collaboratively by Pablo Munoz Ceroni and Markus Barten as part of FHNW coursework in Data Wrangling.
+
+It highlights data cleaning, daily aggregation, merging of multiple public data sources, quality checks, reproducible Python workflows, and exploratory data analysis.
+
 ## Repository contents
 - `01_build_merged_dataset.ipynb`: load → clean → daily aggregation → merge → quality assurance → write output
 - `02_analysis_plots.ipynb`: exploratory analysis and plots
